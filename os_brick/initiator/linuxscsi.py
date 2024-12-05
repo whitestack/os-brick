@@ -443,6 +443,7 @@ class LinuxSCSI(executor.Executor):
                 raise
 
     def flush_multipath_device(self, device_map_name):
+        device_map_name = device_map_name.split("mpath-", 1)[1]
         LOG.debug("Flush multipath device %s", device_map_name)
         # NOTE(geguileo): With 30% connection error rates flush can get stuck,
         # set timeout to prevent it from hanging here forever.  Retry twice
